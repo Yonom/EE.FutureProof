@@ -6,7 +6,7 @@ namespace EE.FutureProof.Bridge
     {
         int FromVersion { get; }
         int ToVersion { get; }
-        Message UpgradeSend(Message m);
-        Message DowngradeReceive(Message m);
+        Message UpgradeSend(object sender, Message m);
+        Message DowngradeReceive(object sender, Message m);
     }
 }

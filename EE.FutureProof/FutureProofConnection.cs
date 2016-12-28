@@ -19,12 +19,12 @@ namespace EE.FutureProof
 
         private void InternalConnection_OnMessage(object sender, Message m)
         {
-            this.OnMessage?.Invoke(sender, this._adapter.DowngradeReceive(m));
+            this.OnMessage?.Invoke(sender, this._adapter.DowngradeReceive(this, m));
         }
 
-        public void Send(Message message)
+        public void Send(Message m)
         {
-            this.InternalConnection.Send(this._adapter.UpgradeSend(message));
+            this.InternalConnection.Send(this._adapter.UpgradeSend(this, m));
         }
 
         public void Send(string type, params object[] parameters)

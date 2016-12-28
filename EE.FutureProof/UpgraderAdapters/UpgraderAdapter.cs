@@ -4,12 +4,12 @@ namespace EE.FutureProof
 {
     internal class UpgraderAdapter
     {
-        public virtual Message UpgradeSend(Message m)
+        public virtual Message UpgradeSend(object sender, Message m)
         {
             return m;
         }
 
-        public virtual Message DowngradeReceive(Message m)
+        public virtual Message DowngradeReceive(object sender, Message m)
         {
             return m;
         }

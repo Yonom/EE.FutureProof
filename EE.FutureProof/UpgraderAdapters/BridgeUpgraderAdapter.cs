@@ -15,14 +15,14 @@ namespace EE.FutureProof
         public int FromVersion => this._upgrader.FromVersion;
         public int ToVersion => this._upgrader.ToVersion;
 
-        public override Message UpgradeSend(Message m)
+        public override Message UpgradeSend(object sender, Message m)
         {
-            return this._upgrader.UpgradeSend(m);
+            return this._upgrader.UpgradeSend(sender, m);
         }
 
-        public override Message DowngradeReceive(Message m)
+        public override Message DowngradeReceive(object sender, Message m)
         {
-            return this._upgrader.DowngradeReceive(m);
+            return this._upgrader.DowngradeReceive(sender, m);
         }
     }
 }
