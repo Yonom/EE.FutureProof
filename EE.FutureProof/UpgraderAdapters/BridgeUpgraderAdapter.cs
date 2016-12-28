@@ -20,9 +20,9 @@ namespace EE.FutureProof
             return this._upgrader.UpgradeSend(m);
         }
 
-        public override Message UpgradeReceive(Message m)
+        public override Message DowngradeReceive(Message m)
         {
-            return this._upgrader.UpgradeReceive(m);
+            return this._upgrader.DowngradeReceive(m);
         }
     }
 }

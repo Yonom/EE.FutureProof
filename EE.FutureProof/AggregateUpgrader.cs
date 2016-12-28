@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using EE.FutureProof.Bridge;
 using PlayerIOClient;
@@ -17,9 +18,14 @@ namespace EE.FutureProof
             return this.Upgraders.Aggregate(m, (current, upgrader) => upgrader.UpgradeSend(current));
         }
 
-        public Message UpgradeReceive(Message m)
+        public Message DowngradeReceive(Message m)
         {
-            return this.Upgraders.Aggregate(m, (current, upgrader) => upgrader.UpgradeReceive(current));
+            Message result = m;
+            for (var i = this.Upgraders.Count - 1; i >= 0; i--) // Fold right
+            {
+                result = this.Upgraders[i].DowngradeReceive(result);
+            }
+            return result;
         }
     }
 }

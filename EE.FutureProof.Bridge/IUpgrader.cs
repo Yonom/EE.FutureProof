@@ -7,6 +7,6 @@ namespace EE.FutureProof.Bridge
         int FromVersion { get; }
         int ToVersion { get; }
         Message UpgradeSend(Message m);
-        Message UpgradeReceive(Message m);
+        Message DowngradeReceive(Message m);
     }
 }

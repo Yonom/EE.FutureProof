@@ -9,7 +9,7 @@ namespace EE.FutureProof
             return m;
         }
 
-        public virtual Message UpgradeReceive(Message m)
+        public virtual Message DowngradeReceive(Message m)
         {
             return m;
         }
