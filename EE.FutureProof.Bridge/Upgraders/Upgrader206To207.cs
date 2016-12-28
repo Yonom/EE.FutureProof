@@ -128,7 +128,7 @@ namespace EE.FutureProof.Bridge
                         m[4],
                         Token);
 
-                for (uint i = 0; i < m.Count; i++)
+                for (uint i = 5; i < m.Count; i++)
                 {
                     message.Add(m[i]);
                 }
