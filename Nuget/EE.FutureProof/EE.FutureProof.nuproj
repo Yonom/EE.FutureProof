@@ -22,7 +22,7 @@
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
     <Id>EE.FutureProof</Id>
-    <Version>1.0.3</Version>
+    <Version>1.1.0</Version>
     <Title>EE.FutureProof</Title>
     <Authors>Younom</Authors>
     <Owners>Younom</Owners>
