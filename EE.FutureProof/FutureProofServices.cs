@@ -8,6 +8,7 @@ namespace EE.FutureProof
     public static class FutureProofServices
     {
         private const string BridgeName = "EE.FutureProof.Bridge, Version=1.0.0.0, Culture=neutral, PublicKeyToken=14aec7c9c76f1d99";
+        private const string BridgeUrl = "https://github.com/Yonom/EE.FutureProof/raw/master/bin/EE.FutureProof.Bridge.dll";
 
         static FutureProofServices()
         {
@@ -20,7 +21,7 @@ namespace EE.FutureProof
             {
                 try
                 {
-                    var bytes = new WebClient().DownloadData("https://github.com/Yonom/EE.FutureProof/raw/master/bin/EE.FutureProof.Bridge.dll");
+                    var bytes = new WebClient().DownloadData(BridgeUrl);
                     return Assembly.Load(bytes);
                 }
                 catch (Exception ex)

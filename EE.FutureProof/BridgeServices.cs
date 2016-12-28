@@ -14,11 +14,13 @@ namespace EE.FutureProof
             try
             {
                 var assembly = Assembly.GetAssembly(typeof(IUpgrader));
-                foreach (var upgraderClass in assembly.GetExportedTypes().Where(t => !t.IsInterface && typeof(IUpgrader).IsAssignableFrom(t)))
+                var upgraderClasses = assembly.GetExportedTypes().Where(t => !t.IsInterface && typeof(IUpgrader).IsAssignableFrom(t));
+                foreach (var upgraderClass in upgraderClasses)
                 {
                     var upgrader = (IUpgrader)Activator.CreateInstance(upgraderClass);
                     List<IUpgrader> version;
-                    if (!Upgraders.TryGetValue(upgrader.FromVersion, out version)) Upgraders.Add(upgrader.FromVersion, version = new List<IUpgrader>());
+                    if (!Upgraders.TryGetValue(upgrader.FromVersion, out version))
+                        Upgraders.Add(upgrader.FromVersion, version = new List<IUpgrader>());
                     version.Add(upgrader);
                 }
             }
@@ -45,7 +47,7 @@ namespace EE.FutureProof
                         .First();
                     aggregator.Upgraders.Add(upgrader);
 
-                    fromVersion = toVersion;
+                    fromVersion = upgrader.ToVersion;
                 }
                 else
                 {
