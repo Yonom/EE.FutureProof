@@ -22,12 +22,12 @@
   <Import Project="$(NuProjPath)\NuProj.props" Condition="Exists('$(NuProjPath)\NuProj.props')" />
   <PropertyGroup Label="Configuration">
     <Id>EE.FutureProof</Id>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Title>EE.FutureProof</Title>
     <Authors>Younom</Authors>
     <Owners>Younom</Owners>
     <Summary>EE.FutureProof</Summary>
-    <Description>Prevent your bots from crashing if the packet signatures change.</Description>
+    <Description>Prevents Everybody Edits bots from breaking in the future.</Description>
     <ReleaseNotes>
     </ReleaseNotes>
     <ProjectUrl>
