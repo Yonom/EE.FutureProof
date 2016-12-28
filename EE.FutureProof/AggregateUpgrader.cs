@@ -9,9 +9,6 @@ namespace EE.FutureProof
     {
         public List<IUpgrader> Upgraders { get; } = new List<IUpgrader>();
 
-        public int FromVersion => this.Upgraders[0].FromVersion;
-        public int ToVersion => this.Upgraders[this.Upgraders.Count - 1].ToVersion;
-
         public Message UpgradeSend(object sender, Message m)
         {
             return this.Upgraders.Aggregate(m, (current, upgrader) => upgrader.UpgradeSend(sender, current));

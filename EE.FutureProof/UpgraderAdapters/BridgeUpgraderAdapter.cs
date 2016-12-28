@@ -12,9 +12,6 @@ namespace EE.FutureProof
             this._upgrader = upgrader;
         }
 
-        public int FromVersion => this._upgrader.FromVersion;
-        public int ToVersion => this._upgrader.ToVersion;
-
         public override Message UpgradeSend(object sender, Message m)
         {
             return this._upgrader.UpgradeSend(sender, m);
