@@ -1,2 +1,2 @@
 language: csharp
-solution: EE.FutureProof.sln
+solution: EE.FutureProof/EE.FutureProof.csproj
