@@ -52,6 +52,7 @@
     <Compile Include="IUpgrader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpgraderAttribute.cs" />
+    <Compile Include="Upgraders\Upgrader206To207.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
