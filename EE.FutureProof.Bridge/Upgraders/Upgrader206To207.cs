@@ -6,137 +6,79 @@ namespace EE.FutureProof.Bridge
     public class Upgrader206To207 : IUpgrader
     {
         private const string Token = "..";
+
         public Message UpgradeSend(object sender, Message m)
         {
-            if (m.Type == Token)
+            switch (m.Type)
             {
-                var message = Message.Create("b");
-                for (uint i = 0; i < m.Count; i++)
-                {
-                    message.Add(m[i]);
-                }
+                case Token:
+                    return m.ToEnumerable()
+                        .SetType("b")
+                        .ToMessage();
 
-                return message;
+                case Token + "k":
+                    return m.ToEnumerable()
+                        .SetType("crown")
+                        .ToMessage();
+
+                case Token + "f":
+                    return m.ToEnumerable()
+                        .SetType("smiley")
+                        .ToMessage();
+
+                case Token + "r":
+                    return m.ToEnumerable()
+                        .SetType("pressKey")
+                        .Add("red")
+                        .ToMessage();
+
+                case Token + "g":
+                    return m.ToEnumerable()
+                        .SetType("pressKey")
+                        .Add("green")
+                        .ToMessage();
+
+                case Token + "b":
+                    return m.ToEnumerable()
+                        .SetType("pressKey")
+                        .Add("blue")
+                        .ToMessage();
+
+                case Token + "y":
+                    return m.ToEnumerable()
+                        .SetType("pressKey")
+                        .Add("yellow")
+                        .ToMessage();
+
+                case Token + "m":
+                    return m.ToEnumerable()
+                        .SetType("pressKey")
+                        .Add("magenta")
+                        .ToMessage();
+
+                case Token + "c":
+                    return m.ToEnumerable()
+                        .SetType("pressKey")
+                        .Add("cyan")
+                        .ToMessage();
+
+                default:
+                    return m;
             }
-
-            if (m.Type == Token + "k")
-            {
-                var message = Message.Create("crown");
-                for (uint i = 0; i < m.Count; i++)
-                {
-                    message.Add(m[i]);
-                }
-
-                return message;
-            }
-
-            if (m.Type == Token + "f")
-            {
-                return Message.Create("smiley", m[0]);
-            }
-
-            if (m.Type == Token + "r")
-            {
-                var message = Message.Create("pressKey");
-                for (uint i = 0; i < m.Count; i++)
-                {
-                    message.Add(m[i]);
-                }
-
-                message.Add("red");
-
-                return message;
-            }
-
-            if (m.Type == Token + "g")
-            {
-                var message = Message.Create("pressKey");
-                for (uint i = 0; i < m.Count; i++)
-                {
-                    message.Add(m[i]);
-                }
-
-                message.Add("green");
-
-                return message;
-            }
-
-            if (m.Type == Token + "b")
-            {
-                var message = Message.Create("pressKey");
-                for (uint i = 0; i < m.Count; i++)
-                {
-                    message.Add(m[i]);
-                }
-
-                message.Add("blue");
-
-                return message;
-            }
-
-            if (m.Type == Token + "y")
-            {
-                var message = Message.Create("pressKey");
-                for (uint i = 0; i < m.Count; i++)
-                {
-                    message.Add(m[i]);
-                }
-
-                message.Add("yellow");
-
-                return message;
-            }
-
-            if (m.Type == Token + "m")
-            {
-                var message = Message.Create("pressKey");
-                for (uint i = 0; i < m.Count; i++)
-                {
-                    message.Add(m[i]);
-                }
-
-                message.Add("magenta");
-
-                return message;
-            }
-
-            if (m.Type == Token + "c")
-            {
-                var message = Message.Create("pressKey");
-                for (uint i = 0; i < m.Count; i++)
-                {
-                    message.Add(m[i]);
-                }
-
-                message.Add("cyan");
-
-                return message;
-            }
-
-            return m;
         }
 
         public Message DowngradeReceive(object sender, Message m)
         {
-            if (m.Type == "init")
+            switch (m.Type)
             {
-                var message = Message.Create("init",
-                        m[0],
-                        m[1],
-                        m[2],
-                        m[3],
-                        m[4],
-                        Token);
+                case "init":
+                    return m.ToEnumerable()
+                        .Insert(5, Token)
+                        .ToMessage();
 
-                for (uint i = 5; i < m.Count; i++)
-                {
-                    message.Add(m[i]);
-                }
-
-                return message;
+                default:
+                    return m;
             }
-
-            return m;
         }
     }
 }
