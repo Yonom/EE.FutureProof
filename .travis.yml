@@ -2,3 +2,6 @@ language: csharp
 solution: EE.FutureProof/EE.FutureProof.csproj
 install:
   - nuget restore EE.FutureProof/packages.config -SolutionDirectory . -Verbosity detailed
+branches:
+  only: 
+    - master
