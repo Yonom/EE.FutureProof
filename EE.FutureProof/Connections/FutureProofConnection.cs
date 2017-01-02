@@ -2,20 +2,20 @@
 
 namespace EE.FutureProof
 {
-    public class FutureProofConnection
+    public class FutureProofConnection : IConnectionWrapper
     {
         private readonly UpgraderAdapter _adapter;
+        public readonly IConnectionWrapper _innerConnection;
 
-        internal FutureProofConnection(Connection connection, UpgraderAdapter adapter)
+        internal FutureProofConnection(IConnectionWrapper connection, UpgraderAdapter adapter)
         {
             this._adapter = adapter;
-            this.InternalConnection = connection;
-            this.InternalConnection.OnMessage += this.InternalConnection_OnMessage;
+            this._innerConnection = connection;
+            this._innerConnection.OnMessage += this.InternalConnection_OnMessage;
         }
 
-        public Connection InternalConnection { get; set; }
-
-        public bool Connected => this.InternalConnection.Connected;
+        public Connection InternalConnection => this._innerConnection.InternalConnection;
+        public bool Connected => this._innerConnection.Connected;
 
         private void InternalConnection_OnMessage(object sender, Message m)
         {
@@ -24,7 +24,7 @@ namespace EE.FutureProof
 
         public void Send(Message m)
         {
-            this.InternalConnection.Send(this._adapter.UpgradeSend(this, m));
+            this._innerConnection.Send(this._adapter.UpgradeSend(this, m));
         }
 
         public void Send(string type, params object[] parameters)
@@ -34,15 +34,15 @@ namespace EE.FutureProof
 
         public void Disconnect()
         {
-            this.InternalConnection.Disconnect();
+            this._innerConnection.Disconnect();
         }
 
         public event MessageReceivedEventHandler OnMessage;
 
         public event DisconnectEventHandler OnDisconnect
         {
-            add { this.InternalConnection.OnDisconnect += value; }
-            remove { this.InternalConnection.OnDisconnect -= value; }
+            add { this._innerConnection.OnDisconnect += value; }
+            remove { this._innerConnection.OnDisconnect -= value; }
         }
 
         public void AddOnMessage(MessageReceivedEventHandler handler)
@@ -57,7 +57,7 @@ namespace EE.FutureProof
 
         public void Dispose()
         {
-            this.InternalConnection.Disconnect();
+            this._innerConnection.Disconnect();
         }
     }
 }
