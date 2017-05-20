@@ -28,7 +28,7 @@ namespace EE.FutureProof.Bridge
 
         public static IEnumerable<object> SetType(this IEnumerable<object> message, string type)
         {
-            return message.Insert(-1, type);
+            return message.InsertAt(-1, type);
         }
         
         // From http://stackoverflow.com/questions/41384035/replace-insert-delete-operations-on-ienumerable 
@@ -40,7 +40,7 @@ namespace EE.FutureProof.Bridge
             yield return value;
         }
 
-        public static IEnumerable<object> Insert(this IEnumerable<object> message, int index, object value)
+        public static IEnumerable<object> InsertAt(this IEnumerable<object> message, int index, object value)
         {
             int current = -1;
             foreach (var item in message)
@@ -53,7 +53,7 @@ namespace EE.FutureProof.Bridge
             }
         }
 
-        public static IEnumerable<object> Replace(this IEnumerable<object> message, int index, object value)
+        public static IEnumerable<object> ReplaceAt(this IEnumerable<object> message, int index, object value)
         {
             int current = -1;
             foreach (var item in message)
@@ -63,7 +63,7 @@ namespace EE.FutureProof.Bridge
             }
         }
 
-        public static IEnumerable<object> Remove(this IEnumerable<object> message, int index)
+        public static IEnumerable<object> RemoveAt(this IEnumerable<object> message, int index)
         {
             int current = -1;
             foreach (var item in message)
