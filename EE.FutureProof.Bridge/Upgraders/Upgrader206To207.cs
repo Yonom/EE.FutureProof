@@ -73,7 +73,7 @@ namespace EE.FutureProof.Bridge
             {
                 case "init":
                     return m.ToEnumerable()
-                        .Insert(5, Token)
+                        .InsertAt(5, Token)
                         .ToMessage();
 
                 default:
