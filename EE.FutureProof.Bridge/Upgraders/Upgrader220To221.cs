@@ -7,7 +7,16 @@ namespace EE.FutureProof.Bridge
     {
         public Message UpgradeSend(object sender, Message m)
         {
-            return m;
+            switch (m.Type)
+            {
+                case "setRoomVisible":
+                    return m.ToEnumerable()
+                        .Add(false)
+                        .ToMessage();
+
+                default:
+                    return m;
+            }
         }
 
         public Message DowngradeReceive(object sender, Message m)
