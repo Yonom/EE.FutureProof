@@ -24,7 +24,7 @@ namespace EE.FutureProof
 
         public static FutureProofConnection FutureProof(this IConnectionWrapper connection, int fromVersion, int toVersion)
         {
-            return new FutureProofConnection(connection, FutureProofServices.GetAdapter(fromVersion, toVersion));
+            return FutureProofServices.GetConnection(connection, fromVersion, toVersion);
         }
     }
 }

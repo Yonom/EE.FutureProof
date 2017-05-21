@@ -43,12 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AggregateUpgrader.cs" />
-    <Compile Include="BridgeServices.cs" />
+    <Compile Include="Connections\BridgeFutureProofConnection.cs" />
     <Compile Include="Connections\IConnectionWrapper.cs" />
     <Compile Include="Connections\PlayerIOConnection.cs" />
-    <Compile Include="UpgraderAdapters\BridgeUpgraderAdapter.cs" />
-    <Compile Include="UpgraderAdapters\UpgraderAdapter.cs" />
     <Compile Include="FutureProofExtensions.cs" />
     <Compile Include="Connections\FutureProofConnection.cs" />
     <Compile Include="FutureProofServices.cs" />

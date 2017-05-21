@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using PlayerIOClient;
 
 namespace EE.FutureProof.Bridge
@@ -11,8 +8,7 @@ namespace EE.FutureProof.Bridge
         public static IEnumerable<object> ToEnumerable(this Message m)
         {
             yield return m.Type;
-            for (var i = 0u; i < m.Count; i++)
-                yield return m[i];
+            for (var i = 0u; i < m.Count; i++) yield return m[i];
         }
 
         public static Message ToMessage(this IEnumerable<object> message)
@@ -21,8 +17,7 @@ namespace EE.FutureProof.Bridge
             enumerator.MoveNext();
 
             var m = Message.Create((string)enumerator.Current);
-            while (enumerator.MoveNext())
-                m.Add(enumerator.Current);
+            while (enumerator.MoveNext()) m.Add(enumerator.Current);
             return m;
         }
 
@@ -30,23 +25,21 @@ namespace EE.FutureProof.Bridge
         {
             return message.InsertAt(-1, type);
         }
-        
+
         // From http://stackoverflow.com/questions/41384035/replace-insert-delete-operations-on-ienumerable 
         public static IEnumerable<object> Add(this IEnumerable<object> message, object value)
         {
-            foreach (var item in message)
-                yield return item;
+            foreach (var item in message) yield return item;
 
             yield return value;
         }
 
         public static IEnumerable<object> InsertAt(this IEnumerable<object> message, int index, object value)
         {
-            int current = -1;
+            var current = -1;
             foreach (var item in message)
             {
-                if (current == index)
-                    yield return value;
+                if (current == index) yield return value;
 
                 yield return item;
                 current++;
@@ -55,7 +48,7 @@ namespace EE.FutureProof.Bridge
 
         public static IEnumerable<object> ReplaceAt(this IEnumerable<object> message, int index, object value)
         {
-            int current = -1;
+            var current = -1;
             foreach (var item in message)
             {
                 yield return current == index ? value : item;
@@ -65,11 +58,10 @@ namespace EE.FutureProof.Bridge
 
         public static IEnumerable<object> RemoveAt(this IEnumerable<object> message, int index)
         {
-            int current = -1;
+            var current = -1;
             foreach (var item in message)
             {
-                if (current != index)
-                    yield return item;
+                if (current != index) yield return item;
 
                 current++;
             }

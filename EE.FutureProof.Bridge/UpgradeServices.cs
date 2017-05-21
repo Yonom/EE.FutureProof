@@ -3,34 +3,27 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using EE.FutureProof.Bridge;
 
-namespace EE.FutureProof
+namespace EE.FutureProof.Bridge
 {
-    internal static class BridgeServices
+    public static class UpgradeServices
     {
-        class UpgraderData
-        {
-            public UpgraderAttribute Attribute { get; set; }
-            public Type Type { get; set; }
-        }
-
-        static BridgeServices()
+        static UpgradeServices()
         {
             try
             {
-                var assembly = Assembly.GetAssembly(typeof(IUpgrader));
+                var assembly = Assembly.GetExecutingAssembly();
                 var upgraders = assembly.GetExportedTypes().Where(t => !t.IsAbstract && typeof(IUpgrader).IsAssignableFrom(t));
                 foreach (var upgrader in upgraders)
                 {
                     var attr = (UpgraderAttribute)upgrader.GetCustomAttributes(
-                        typeof(UpgraderAttribute), true).FirstOrDefault();
+                            typeof(UpgraderAttribute), true)
+                        .FirstOrDefault();
                     if (attr != null)
                     {
                         List<UpgraderData> version;
-                        if (!Upgraders.TryGetValue(attr.FromVersion, out version))
-                            Upgraders.Add(attr.FromVersion, version = new List<UpgraderData>());
-                        version.Add(new UpgraderData { Attribute = attr, Type = upgrader});
+                        if (!Upgraders.TryGetValue(attr.FromVersion, out version)) Upgraders.Add(attr.FromVersion, version = new List<UpgraderData>());
+                        version.Add(new UpgraderData { Attribute = attr, Type = upgrader });
                     }
                 }
             }
@@ -43,9 +36,10 @@ namespace EE.FutureProof
 
         private static Dictionary<int, List<UpgraderData>> Upgraders { get; } = new Dictionary<int, List<UpgraderData>>();
 
-        internal static UpgraderAdapter GetBridgeAdapter(int fromVersion, int toVersion)
+        public static IUpgrader GetUpgrader(int fromVersion, int toVersion)
         {
             var aggregator = new AggregateUpgrader();
+
             while (fromVersion < toVersion)
             {
                 List<UpgraderData> version;
@@ -66,7 +60,14 @@ namespace EE.FutureProof
                     fromVersion++;
                 }
             }
-            return new BridgeUpgraderAdapter(aggregator);
+
+            return aggregator;
+        }
+
+        private class UpgraderData
+        {
+            public UpgraderAttribute Attribute { get; set; }
+            public Type Type { get; set; }
         }
     }
 }

@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using EE.FutureProof.Bridge;
 using PlayerIOClient;
 
-namespace EE.FutureProof
+namespace EE.FutureProof.Bridge
 {
     internal class AggregateUpgrader : IUpgrader
     {
@@ -18,9 +17,7 @@ namespace EE.FutureProof
         {
             var result = m;
             for (var i = this.Upgraders.Count - 1; i >= 0; i--) // Fold right
-            {
                 result = this.Upgraders[i].DowngradeReceive(sender, result);
-            }
             return result;
         }
     }
