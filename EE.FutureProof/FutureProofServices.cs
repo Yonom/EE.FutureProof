@@ -8,7 +8,7 @@ namespace EE.FutureProof
 {
     internal static class FutureProofServices
     {
-        private const string BridgeName = "EE.FutureProof.Bridge, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ce864d4ae38e0ab7";
+        private const string BridgeName = "EE.FutureProof.Bridge, Version=2.0.0.0, Culture=neutral, PublicKeyToken=ce864d4ae38e0ab7";
         private const string BridgeUrl = "https://github.com/Yonom/EE.FutureProof/raw/master/bin/EE.FutureProof.Bridge.dll";
 
         static FutureProofServices()
