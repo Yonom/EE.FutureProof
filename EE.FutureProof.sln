@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EE.FutureProof", "EE.FutureProof\EE.FutureProof.csproj", "{AFD3C892-10F7-4279-B559-692F235D8ABB}"
 EndProject
@@ -17,24 +17,32 @@ Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Travis|Any CPU = Travis|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{AFD3C892-10F7-4279-B559-692F235D8ABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AFD3C892-10F7-4279-B559-692F235D8ABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFD3C892-10F7-4279-B559-692F235D8ABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFD3C892-10F7-4279-B559-692F235D8ABB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFD3C892-10F7-4279-B559-692F235D8ABB}.Travis|Any CPU.ActiveCfg = Travis|Any CPU
+		{AFD3C892-10F7-4279-B559-692F235D8ABB}.Travis|Any CPU.Build.0 = Travis|Any CPU
 		{1A1DDEEC-DEE1-4264-974B-526870977913}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1A1DDEEC-DEE1-4264-974B-526870977913}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A1DDEEC-DEE1-4264-974B-526870977913}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A1DDEEC-DEE1-4264-974B-526870977913}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A1DDEEC-DEE1-4264-974B-526870977913}.Travis|Any CPU.ActiveCfg = Travis|Any CPU
+		{1A1DDEEC-DEE1-4264-974B-526870977913}.Travis|Any CPU.Build.0 = Travis|Any CPU
 		{D4AAF399-22E7-4DEE-90A5-3112B63AEE58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D4AAF399-22E7-4DEE-90A5-3112B63AEE58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4AAF399-22E7-4DEE-90A5-3112B63AEE58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4AAF399-22E7-4DEE-90A5-3112B63AEE58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4AAF399-22E7-4DEE-90A5-3112B63AEE58}.Travis|Any CPU.ActiveCfg = Travis|Any CPU
+		{D4AAF399-22E7-4DEE-90A5-3112B63AEE58}.Travis|Any CPU.Build.0 = Travis|Any CPU
 		{B54539DC-A5E5-4A12-A4E9-760C9C90C4DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B54539DC-A5E5-4A12-A4E9-760C9C90C4DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B54539DC-A5E5-4A12-A4E9-760C9C90C4DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B54539DC-A5E5-4A12-A4E9-760C9C90C4DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B54539DC-A5E5-4A12-A4E9-760C9C90C4DB}.Travis|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,3 +1,4 @@
+using System;
 using EE.FutureProof.Bridge;
 using PlayerIOClient;
 
@@ -15,22 +16,17 @@ namespace EE.FutureProof
 
         protected override void Receive(Message m)
         {
-            this.ReceiveDirect(this._adapter.DowngradeReceive(this, m));
+            base.Receive(this._adapter.DowngradeReceive(this, m));
         }
 
         public override void Send(Message m)
         {
-            this.SendDirect(this._adapter.UpgradeSend(this, m));
+            base.Send(this._adapter.UpgradeSend(this, m));
         }
 
-        public void SendDirect(Message m)
+        void IFutureProofConnection.Receive(Message m)
         {
-            base.Send(m);
-        }
-
-        public void ReceiveDirect(Message m)
-        {
-            base.Receive(m);
+            this.Receive(m);
         }
     }
 }

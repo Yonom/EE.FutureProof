@@ -8,12 +8,12 @@ namespace EE.FutureProof.Bridge
     {
         public List<IUpgrader> Upgraders { get; } = new List<IUpgrader>();
 
-        public Message UpgradeSend(object sender, Message m)
+        public Message UpgradeSend(IFutureProofConnection sender, Message m)
         {
             return this.Upgraders.Aggregate(m, (current, upgrader) => upgrader.UpgradeSend(sender, current));
         }
 
-        public Message DowngradeReceive(object sender, Message m)
+        public Message DowngradeReceive(IFutureProofConnection sender, Message m)
         {
             var result = m;
             for (var i = this.Upgraders.Count - 1; i >= 0; i--) // Fold right

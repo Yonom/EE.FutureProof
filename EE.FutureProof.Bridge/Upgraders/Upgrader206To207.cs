@@ -3,11 +3,11 @@
 namespace EE.FutureProof.Bridge
 {
     [Upgrader(206, 207)]
-    public class Upgrader206To207 : IUpgrader
+    internal class Upgrader206To207 : IUpgrader
     {
         private const string Token = "..";
 
-        public Message UpgradeSend(object sender, Message m)
+        public Message UpgradeSend(IFutureProofConnection sender, Message m)
         {
             switch (m.Type)
             {
@@ -67,7 +67,7 @@ namespace EE.FutureProof.Bridge
             }
         }
 
-        public Message DowngradeReceive(object sender, Message m)
+        public Message DowngradeReceive(IFutureProofConnection sender, Message m)
         {
             switch (m.Type)
             {

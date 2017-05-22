@@ -4,7 +4,7 @@ namespace EE.FutureProof.Bridge
 {
     public interface IFutureProofConnection
     {
-        void SendDirect(Message m);
-        void ReceiveDirect(Message m);
+        void Send(Message m);
+        void Receive(Message m);
     }
 }

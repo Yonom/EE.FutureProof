@@ -3,7 +3,7 @@
 namespace EE.FutureProof.Bridge
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public sealed class UpgraderAttribute : Attribute
+    internal sealed class UpgraderAttribute : Attribute
     {
         public UpgraderAttribute(int fromVersion, int toVersion)
         {

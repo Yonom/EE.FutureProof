@@ -13,7 +13,7 @@ namespace EE.FutureProof.Bridge
             try
             {
                 var assembly = Assembly.GetExecutingAssembly();
-                var upgraders = assembly.GetExportedTypes().Where(t => !t.IsAbstract && typeof(IUpgrader).IsAssignableFrom(t));
+                var upgraders = assembly.GetTypes().Where(t => !t.IsAbstract && typeof(IUpgrader).IsAssignableFrom(t));
                 foreach (var upgrader in upgraders)
                 {
                     var attr = (UpgraderAttribute)upgrader.GetCustomAttributes(

@@ -1,5 +1,6 @@
 language: csharp
-solution: EE.FutureProof/EE.FutureProof.csproj
+script:
+  - xbuild /p:Configuration=Travis EE.FutureProof/EE.FutureProof.csproj
 install:
   - nuget restore EE.FutureProof/packages.config -SolutionDirectory . -Verbosity detailed
 branches:

@@ -8,7 +8,7 @@ namespace EE.FutureProof
 {
     internal static class FutureProofServices
     {
-        private const string BridgeName = "EE.FutureProof.Bridge, Version=1.0.0.0, Culture=neutral, PublicKeyToken=14aec7c9c76f1d99";
+        private const string BridgeName = "EE.FutureProof.Bridge, Version=1.0.0.0, Culture=neutral, PublicKeyToken=ce864d4ae38e0ab7";
         private const string BridgeUrl = "https://github.com/Yonom/EE.FutureProof/raw/master/bin/EE.FutureProof.Bridge.dll";
 
         static FutureProofServices()
@@ -37,6 +37,9 @@ namespace EE.FutureProof
 
         internal static FutureProofConnection GetConnection(IConnectionWrapper connection, int fromVersion, int toVersion)
         {
+            if (toVersion <= fromVersion)
+                return GetDummyFutureProofConnection(connection);
+
             try
             {
                 return GetBridgeConnection(connection, fromVersion, toVersion);
@@ -44,8 +47,13 @@ namespace EE.FutureProof
             catch (Exception ex)
             {
                 Trace.TraceError($"FutureProof: Bridge is unavailable. {ex.Message} {ex.InnerException?.Message}");
-                return new FutureProofConnection(connection);
+                return GetDummyFutureProofConnection(connection);
             }
+        }
+
+        private static FutureProofConnection GetDummyFutureProofConnection(IConnectionWrapper connection)
+        {
+            return new FutureProofConnection(connection);
         }
 
         private static FutureProofConnection GetBridgeConnection(IConnectionWrapper connection, int fromVersion, int toVersion)

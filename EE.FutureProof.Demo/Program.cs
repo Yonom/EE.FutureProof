@@ -11,7 +11,7 @@ namespace EE.FutureProof.Demo
             var connection = client.Multiplayer.CreateJoinRoom("PW01", "Everybodyedits221", true, null, null).FutureProof(1);
 
             connection.OnMessage += (sender, message) => { Console.WriteLine(message.Type); };
-            connection.Send("i");
+            connection.Send("init");
 
             Console.ReadLine();
         }
