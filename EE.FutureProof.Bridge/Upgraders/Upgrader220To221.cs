@@ -23,18 +23,10 @@ namespace EE.FutureProof.Bridge
         {
             switch (m.Type)
             {
-                case "temp_Upgrader220To221_add":
-                    return m.ToEnumerable()
-                        .SetType("add")
-                        .ToMessage();
-
                 case "add":
-                    sender.Receive(m.ToEnumerable() 
-                        .SetType("temp_Upgrader220To221_add")
-                        .RemoveAt(22)
+                     return m.ToEnumerable()
                         .RemoveAt(23)
-                        .ToMessage());
-                     return Message.Create("psi", m[0], m[22]);
+                        .ToMessage();
 
                 default:
                     return m;
