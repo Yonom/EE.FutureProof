@@ -2,7 +2,7 @@
 
 namespace EE.FutureProof
 {
-    class PlayerIOConnection : IConnectionWrapper
+    public class PlayerIOConnection : IConnectionWrapper
     {
         public Connection InternalConnection { get; }
 

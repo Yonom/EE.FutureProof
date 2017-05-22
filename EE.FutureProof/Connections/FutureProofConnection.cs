@@ -4,12 +4,10 @@ namespace EE.FutureProof
 {
     public class FutureProofConnection : IConnectionWrapper
     {
-        private readonly UpgraderAdapter _adapter;
-        public readonly IConnectionWrapper _innerConnection;
+        private readonly IConnectionWrapper _innerConnection;
 
-        internal FutureProofConnection(IConnectionWrapper connection, UpgraderAdapter adapter)
+        internal FutureProofConnection(IConnectionWrapper connection)
         {
-            this._adapter = adapter;
             this._innerConnection = connection;
             this._innerConnection.OnMessage += this.InternalConnection_OnMessage;
         }
@@ -19,12 +17,17 @@ namespace EE.FutureProof
 
         private void InternalConnection_OnMessage(object sender, Message m)
         {
-            this.OnMessage?.Invoke(sender, this._adapter.DowngradeReceive(this, m));
+            this.Receive(m);
         }
 
-        public void Send(Message m)
+        protected virtual void Receive(Message m)
         {
-            this._innerConnection.Send(this._adapter.UpgradeSend(this, m));
+            this.OnMessage?.Invoke(this, m);
+        }
+
+        public virtual void Send(Message m)
+        {
+            this._innerConnection.Send(m);
         }
 
         public void Send(string type, params object[] parameters)

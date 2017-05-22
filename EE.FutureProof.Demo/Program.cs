@@ -8,10 +8,10 @@ namespace EE.FutureProof.Demo
         private static void Main(string[] args)
         {
             var client = PlayerIO.QuickConnect.SimpleConnect("everybody-edits-su9rn58o40itdbnw69plyw", "guest", "guest", null);
-            var connection = client.Multiplayer.CreateJoinRoom("PW01", "Everybodyedits218", true, null, null).FutureProof(1);
+            var connection = client.Multiplayer.CreateJoinRoom("PW01", "Everybodyedits221", true, null, null).FutureProof(1);
 
             connection.OnMessage += (sender, message) => { Console.WriteLine(message.Type); };
-            connection.Send("i");
+            connection.Send("init");
 
             Console.ReadLine();
         }

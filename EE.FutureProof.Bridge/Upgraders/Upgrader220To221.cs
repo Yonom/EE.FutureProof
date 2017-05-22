@@ -3,9 +3,9 @@
 namespace EE.FutureProof.Bridge
 {
     [Upgrader(220, 221)]
-    public class Upgrader220To221 : IUpgrader
+    internal class Upgrader220To221 : IUpgrader
     {
-        public Message UpgradeSend(object sender, Message m)
+        public Message UpgradeSend(IFutureProofConnection sender, Message m)
         {
             switch (m.Type)
             {
@@ -19,15 +19,13 @@ namespace EE.FutureProof.Bridge
             }
         }
 
-        public Message DowngradeReceive(object sender, Message m)
+        public Message DowngradeReceive(IFutureProofConnection sender, Message m)
         {
             switch (m.Type)
             {
                 case "add":
-                    return m.ToEnumerable()
-                        .RemoveAt(22)
+                     return m.ToEnumerable()
                         .RemoveAt(23)
-                        .RemoveAt(24)
                         .ToMessage();
 
                 default:

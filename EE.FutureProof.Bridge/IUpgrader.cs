@@ -4,7 +4,7 @@ namespace EE.FutureProof.Bridge
 {
     public interface IUpgrader
     {
-        Message UpgradeSend(object sender, Message m);
-        Message DowngradeReceive(object sender, Message m);
+        Message UpgradeSend(IFutureProofConnection sender, Message m);
+        Message DowngradeReceive(IFutureProofConnection sender, Message m);
     }
 }

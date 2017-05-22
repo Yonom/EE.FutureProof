@@ -29,6 +29,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Travis|AnyCPU'">
+    <OutputPath>bin\Travis\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PlayerIOClient, Version=2.3.6.0, Culture=neutral, PublicKeyToken=c7f7b730653f6a44, processorArchitecture=MSIL">
       <HintPath>..\packages\PlayerIOClient-Signed.3.2.483\lib\PlayerIOClient.dll</HintPath>
@@ -43,12 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AggregateUpgrader.cs" />
-    <Compile Include="BridgeServices.cs" />
+    <Compile Include="Connections\BridgeFutureProofConnection.cs" />
     <Compile Include="Connections\IConnectionWrapper.cs" />
     <Compile Include="Connections\PlayerIOConnection.cs" />
-    <Compile Include="UpgraderAdapters\BridgeUpgraderAdapter.cs" />
-    <Compile Include="UpgraderAdapters\UpgraderAdapter.cs" />
     <Compile Include="FutureProofExtensions.cs" />
     <Compile Include="Connections\FutureProofConnection.cs" />
     <Compile Include="FutureProofServices.cs" />
